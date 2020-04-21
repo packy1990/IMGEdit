@@ -1,2 +1,3 @@
 rootProject.name='IMGEdit'
 include ':app'
+include ':ImageEdit'
