@@ -76,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
                 if (data == null) return;
                 if (Code.REQUEST_CAMERA == requestCode) {
                     String imagePath = data.getStringExtra(Key.IMAGE_PATH);
-                    LogUtil.i("涂鸦图片路径 " + imagePath);
                     Glide.with(this).load(imagePath).into(iv_image);
                 }
             default:
