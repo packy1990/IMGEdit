@@ -13,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
-import com.example.imgedit.cameralibrary.util.LogUtil;
 import com.example.imgedit.constant.Code;
 import com.example.imgedit.constant.Key;
 import com.example.imgedit.permission.PermissionListener;

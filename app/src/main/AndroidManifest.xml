@@ -3,13 +3,13 @@
     package="com.example.imgedit">
 
 
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+<!--    <uses-permission android:name="android.permission.CAMERA" />-->
+<!--    <uses-permission android:name="android.permission.RECORD_AUDIO" />-->
+<!--    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />-->
+<!--    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
+<!--    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>-->
 
-    <uses-permission android:name="android.permission.FLASHLIGHT" />
+<!--    <uses-permission android:name="android.permission.FLASHLIGHT" />-->
 
     <application
         android:allowBackup="true"
@@ -28,22 +28,22 @@
         </activity>
 
 
-        <activity android:name=".widget.EasyCameraActivity" />
+<!--        <activity android:name=".widget.EasyCameraActivity" />-->
 
-        <activity
-            android:name=".permission.PermissionActivity"
-            android:theme="@style/GrantorNoDisplay" />
+<!--        <activity-->
+<!--            android:name=".permission.PermissionActivity"-->
+<!--            android:theme="@style/GrantorNoDisplay" />-->
 
 
 
-        <activity
-            android:name=".editLibrary.IMGEditActivity"
-            android:theme="@style/ImageGalleryTheme" />
+<!--        <activity-->
+<!--            android:name=".editLibrary.IMGEditActivity"-->
+<!--            android:theme="@style/ImageGalleryTheme" />-->
 
-        <activity
-            android:name=".editLibrary.IMGGalleryActivity"
-            android:theme="@style/ImageEditTheme"
-            android:windowSoftInputMode="stateAlwaysHidden" />
+<!--        <activity-->
+<!--            android:name=".editLibrary.IMGGalleryActivity"-->
+<!--            android:theme="@style/ImageEditTheme"-->
+<!--            android:windowSoftInputMode="stateAlwaysHidden" />-->
 
 
     </application>
