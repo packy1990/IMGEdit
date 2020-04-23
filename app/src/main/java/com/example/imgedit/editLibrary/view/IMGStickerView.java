@@ -8,17 +8,25 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.imgedit.R;
+import com.example.imgedit.editLibrary.IMG;
+import com.example.imgedit.editLibrary.core.IMGMode;
 import com.example.imgedit.editLibrary.core.sticker.IMGSticker;
 import com.example.imgedit.editLibrary.core.sticker.IMGStickerAdjustHelper;
 import com.example.imgedit.editLibrary.core.sticker.IMGStickerHelper;
 import com.example.imgedit.editLibrary.core.sticker.IMGStickerMoveHelper;
+
+import static com.example.imgedit.editLibrary.view.IMGStickerTextView.PADDING;
 
 /**
  * Created by felix on 2017/12/12 下午4:26.
@@ -59,6 +67,10 @@ public abstract class IMGStickerView extends ViewGroup implements IMGSticker, Vi
 
     private static final float STROKE_WIDTH = 3f;
 
+
+
+    private  int showType=0;
+
     {
         PAINT = new Paint(Paint.ANTI_ALIAS_FLAG);
         PAINT.setColor(Color.WHITE);
@@ -83,7 +95,7 @@ public abstract class IMGStickerView extends ViewGroup implements IMGSticker, Vi
         setBackgroundColor(Color.TRANSPARENT);
 
         mContentView = onCreateContentView(context);
-        addView(mContentView, getContentLayoutParams());
+        addView(mContentView,getContentLayoutParams(context));
 
         mRemoveView = new ImageView(context);
         mRemoveView.setScaleType(ImageView.ScaleType.FIT_XY);
@@ -135,12 +147,19 @@ public abstract class IMGStickerView extends ViewGroup implements IMGSticker, Vi
         setScale(getScale() * scale);
     }
 
-    private LayoutParams getContentLayoutParams() {
-        return new LayoutParams(
-                LayoutParams.WRAP_CONTENT,
-                LayoutParams.WRAP_CONTENT
-        );
+    private LayoutParams getContentLayoutParams(Context context) {
+        LinearLayout.LayoutParams layoutParams= new LinearLayout.LayoutParams(
+                LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        return layoutParams;
     }
+    public int getShowType() {
+        return showType;
+    }
+
+    public void setShowType(int showType) {
+        this.showType = showType;
+    }
+
 
     private LayoutParams getAnchorLayoutParams() {
         return new LayoutParams(ANCHOR_SIZE, ANCHOR_SIZE);
@@ -203,8 +222,14 @@ public abstract class IMGStickerView extends ViewGroup implements IMGSticker, Vi
         int centerX = (right - left) >> 1, centerY = (bottom - top) >> 1;
         int hw = mContentView.getMeasuredWidth() >> 1;
         int hh = mContentView.getMeasuredHeight() >> 1;
+        if (showType==1){
+            int padding = PADDING;
+//            mContentView.layout(centerX - hw+padding, centerY - hh+padding, centerX + hw-padding, centerY + hh-padding);
+            mContentView.layout(centerX - hw+padding, centerY - hh+padding, centerX + hw-padding, centerY + hh-padding);
+        }else{
+            mContentView.layout(centerX - hw, centerY - hh, centerX + hw, centerY + hh);
+        }
 
-        mContentView.layout(centerX - hw, centerY - hh, centerX + hw, centerY + hh);
     }
 
     @Override

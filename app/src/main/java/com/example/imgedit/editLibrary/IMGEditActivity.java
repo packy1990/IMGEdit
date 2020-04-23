@@ -67,9 +67,9 @@ public class IMGEditActivity extends IMGEditBaseActivity {
         mImgView.setMode(mode);
         updateModeUI();
 
-        if (mode == IMGMode.CLIP) {
-            setOpDisplay(OP_CLIP);
-        }
+//        if (mode == IMGMode.CLIP) {
+//            setOpDisplay(OP_CLIP);
+//        }
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.example.imageedit;
+package com.example.imgedit;
 
 import android.content.Context;
 

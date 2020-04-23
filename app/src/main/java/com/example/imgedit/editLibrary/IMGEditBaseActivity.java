@@ -80,9 +80,11 @@ abstract class IMGEditBaseActivity extends Activity implements View.OnClickListe
         int vid = v.getId();
         if (vid == R.id.rb_shade) {
             onModeClick(IMGMode.SHADE);
+            findViewById(R.id.btn_undo).setVisibility(View.GONE);
         } else if (vid == R.id.rb_doodle) {
             onModeClick(IMGMode.DOODLE);
         } else if (vid == R.id.btn_text) {
+            onModeClick(IMGMode.NONE);
             onTextModeClick();
         } else if (vid == R.id.rb_mosaic) {
             onModeClick(IMGMode.MOSAIC);
@@ -112,13 +114,19 @@ abstract class IMGEditBaseActivity extends Activity implements View.OnClickListe
                 mModeGroup.check(R.id.rb_shade);
                 setOpSubDisplay(OP_SUB_SHADE);
                 break;
-                case DOODLE:
+            case DOODLE:
                 mModeGroup.check(R.id.rb_doodle);
                 setOpSubDisplay(OP_SUB_DOODLE);
                 break;
             case MOSAIC:
                 mModeGroup.check(R.id.rb_mosaic);
                 setOpSubDisplay(OP_SUB_MOSAIC);
+                break;
+            case CLIP:
+                mImgView.setMode(IMGMode.NONE);
+                mModeGroup.clearCheck();
+                setOpSubDisplay(OP_HIDE);
+                setOpDisplay(OP_CLIP);
                 break;
             case NONE:
                 mModeGroup.clearCheck();

@@ -2,11 +2,17 @@ package com.example.imgedit.editLibrary.view;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.imgedit.R;
 import com.example.imgedit.editLibrary.IMGTextEditDialog;
 import com.example.imgedit.editLibrary.core.IMGText;
 
@@ -25,7 +31,7 @@ public class IMGStickerTextView extends IMGStickerView implements IMGTextEditDia
 
     private static float mBaseTextSize = -1f;
 
-    private static final int PADDING = 26;
+    public static final int PADDING = 26;
 
     private static final float TEXT_SIZE_SP = 6f;
 
@@ -65,6 +71,17 @@ public class IMGStickerTextView extends IMGStickerView implements IMGTextEditDia
         if (mText != null && mTextView != null) {
             mTextView.setText(mText.getText());
             mTextView.setTextColor(mText.getColor());
+
+           // mTextView.setBackgroundColor(Color.BLUE);
+        }
+    }
+    public void setShadeText(int color,int width,int height) {
+       mText =new IMGText("",Color.RED);
+        if (mText != null && mTextView != null) {
+            mTextView.setWidth(width+52);
+            mTextView.setHeight(height+52);
+            mTextView.setBackgroundColor(color);
+
         }
     }
 
@@ -74,6 +91,9 @@ public class IMGStickerTextView extends IMGStickerView implements IMGTextEditDia
 
     @Override
     public void onContentTap() {
+        if (TextUtils.isEmpty(mText.getText())){
+            return;
+        }
         IMGTextEditDialog dialog = getDialog();
         dialog.setText(mText);
         dialog.show();

@@ -100,6 +100,9 @@ public class IMGImage {
      */
     private List<IMGSticker> mBackStickers = new ArrayList<>();
 
+
+    private List<IMGSticker> mShadeStickers = new ArrayList<>();
+
     /**
      * 涂鸦路径
      */

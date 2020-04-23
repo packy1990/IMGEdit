@@ -56,6 +56,7 @@ public class EasyCameraActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         toCustomCamera();
+
     }
 
     private void toCustomCamera() {
