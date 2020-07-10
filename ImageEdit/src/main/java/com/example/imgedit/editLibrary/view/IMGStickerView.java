@@ -8,14 +8,19 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.imgedit.R;
+import com.example.imgedit.editLibrary.IMG;
+import com.example.imgedit.editLibrary.core.IMGMode;
 import com.example.imgedit.editLibrary.core.sticker.IMGSticker;
 import com.example.imgedit.editLibrary.core.sticker.IMGStickerAdjustHelper;
 import com.example.imgedit.editLibrary.core.sticker.IMGStickerHelper;
@@ -62,9 +67,9 @@ public abstract class IMGStickerView extends ViewGroup implements IMGSticker, Vi
 
     private static final float STROKE_WIDTH = 3f;
 
-
-
-    private  int showType=0;
+    private boolean isHideDelete = false;
+    private Context mContext;
+    private int showType = 0;
 
     {
         PAINT = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -83,20 +88,32 @@ public abstract class IMGStickerView extends ViewGroup implements IMGSticker, Vi
 
     public IMGStickerView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        onInitialize(context);
+        this.mContext = context;
+
+
+    }
+
+    public void setHideDelete(boolean isHide) {
+        isHideDelete = isHide;
+        onInitialize(mContext);
     }
 
     public void onInitialize(Context context) {
         setBackgroundColor(Color.TRANSPARENT);
 
         mContentView = onCreateContentView(context);
-        addView(mContentView,getContentLayoutParams(context));
+        addView(mContentView, getContentLayoutParams(context));
 
         mRemoveView = new ImageView(context);
         mRemoveView.setScaleType(ImageView.ScaleType.FIT_XY);
         mRemoveView.setImageResource(R.mipmap.image_ic_delete);
+        if (isHideDelete) {
+            mRemoveView.setVisibility(GONE);
+        }
         addView(mRemoveView, getAnchorLayoutParams());
-        mRemoveView.setOnClickListener(this);
+        if (!isHideDelete) {
+            mRemoveView.setOnClickListener(this);
+        }
 
         mAdjustView = new ImageView(context);
         mAdjustView.setScaleType(ImageView.ScaleType.FIT_XY);
@@ -143,10 +160,11 @@ public abstract class IMGStickerView extends ViewGroup implements IMGSticker, Vi
     }
 
     private LayoutParams getContentLayoutParams(Context context) {
-        LinearLayout.LayoutParams layoutParams= new LinearLayout.LayoutParams(
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                 LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         return layoutParams;
     }
+
     public int getShowType() {
         return showType;
     }
@@ -217,11 +235,11 @@ public abstract class IMGStickerView extends ViewGroup implements IMGSticker, Vi
         int centerX = (right - left) >> 1, centerY = (bottom - top) >> 1;
         int hw = mContentView.getMeasuredWidth() >> 1;
         int hh = mContentView.getMeasuredHeight() >> 1;
-        if (showType==1){
+        if (showType == 1) {
             int padding = PADDING;
 //            mContentView.layout(centerX - hw+padding, centerY - hh+padding, centerX + hw-padding, centerY + hh-padding);
-            mContentView.layout(centerX - hw+padding, centerY - hh+padding, centerX + hw-padding, centerY + hh-padding);
-        }else{
+            mContentView.layout(centerX - hw + padding, centerY - hh + padding, centerX + hw - padding, centerY + hh - padding);
+        } else {
             mContentView.layout(centerX - hw, centerY - hh, centerX + hw, centerY + hh);
         }
 
@@ -252,9 +270,11 @@ public abstract class IMGStickerView extends ViewGroup implements IMGSticker, Vi
                 mDownShowing++;
                 break;
             case MotionEvent.ACTION_UP:
-                if (mDownShowing > 1 && event.getEventTime() - event.getDownTime() < ViewConfiguration.getTapTimeout()) {
-                    onContentTap();
-                    return true;
+                if (!isHideDelete) {
+                    if (mDownShowing > 1 && event.getEventTime() - event.getDownTime() < ViewConfiguration.getTapTimeout()) {
+                        onContentTap();
+                        return true;
+                    }
                 }
                 break;
         }

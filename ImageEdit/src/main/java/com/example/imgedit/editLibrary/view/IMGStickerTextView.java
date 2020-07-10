@@ -5,9 +5,14 @@ import android.graphics.Color;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.imgedit.R;
 import com.example.imgedit.editLibrary.IMGTextEditDialog;
 import com.example.imgedit.editLibrary.core.IMGText;
 

@@ -2,7 +2,7 @@ package com.example.imgedit.cameralibrary.util;
 
 import android.util.Log;
 
-import static android.util.Config.DEBUG;
+import static com.example.imgedit.BuildConfig.DEBUG;
 
 
 /**

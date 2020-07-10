@@ -15,13 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.imgedit.R;
-import com.example.imgedit.editLibrary.gallery.IMGGalleryMenuWindow;
-import com.example.imgedit.editLibrary.gallery.IMGScanTask;
-import com.example.imgedit.editLibrary.gallery.IMGScanner;
-import com.example.imgedit.editLibrary.gallery.model.IMGChooseMode;
-import com.example.imgedit.editLibrary.gallery.model.IMGImageInfo;
-import com.example.imgedit.editLibrary.gallery.model.IMGImageViewModel;
-import com.example.imgedit.editLibrary.widget.IMGGalleryHolderCallback;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.controller.AbstractDraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -34,6 +27,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import com.example.imgedit.editLibrary.gallery.IMGGalleryMenuWindow;
+import com.example.imgedit.editLibrary.gallery.IMGScanTask;
+import com.example.imgedit.editLibrary.gallery.IMGScanner;
+import com.example.imgedit.editLibrary.gallery.model.IMGChooseMode;
+import com.example.imgedit.editLibrary.gallery.model.IMGImageInfo;
+import com.example.imgedit.editLibrary.gallery.model.IMGImageViewModel;
+import com.example.imgedit.editLibrary.widget.IMGGalleryHolderCallback;
 
 /**
  * Created by felix on 2017/11/14 上午11:30.

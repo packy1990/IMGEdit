@@ -21,9 +21,11 @@ import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
+import com.example.imgedit.cameralibrary.util.LogUtil;
 import com.example.imgedit.editLibrary.core.IMGImage;
 import com.example.imgedit.editLibrary.core.IMGMode;
 import com.example.imgedit.editLibrary.core.IMGPath;
@@ -391,6 +393,7 @@ public class IMGView extends FrameLayout implements Runnable, ScaleGestureDetect
         }
 
         IMGStickerTextView textView = new IMGStickerTextView(getContext());
+        textView.setHideDelete(false);
         textView.setShowType(1);
         textView.setShadeText(mPen.getColor(), shadeWidth, shadeHeight);
         textView.setX(getScrollX());
@@ -399,8 +402,9 @@ public class IMGView extends FrameLayout implements Runnable, ScaleGestureDetect
     }
 
 
-    public void addStickerText(IMGText text) {
+    public void addStickerText(IMGText text,boolean isHideDelete) {
         IMGStickerTextView textView = new IMGStickerTextView(getContext());
+        textView.setHideDelete(isHideDelete);
         textView.setShowType(0);
         textView.setText(text);
         LayoutParams layoutParams = new LayoutParams(

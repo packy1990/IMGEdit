@@ -15,11 +15,12 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.imgedit.R;
-import com.example.imgedit.editLibrary.widget.IMGViewHolderCallback;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.example.imgedit.editLibrary.widget.IMGViewHolderCallback;
 
 /**
  * Created by felix on 2018/1/5 下午1:51.

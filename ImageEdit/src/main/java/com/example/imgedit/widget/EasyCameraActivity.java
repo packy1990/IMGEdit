@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -23,10 +24,12 @@ import com.example.imgedit.cameralibrary.listener.ClickListener;
 import com.example.imgedit.cameralibrary.listener.ErrorListener;
 import com.example.imgedit.cameralibrary.listener.JCameraListener;
 import com.example.imgedit.cameralibrary.util.FileUtil;
+import com.example.imgedit.config.Config;
 import com.example.imgedit.constant.Code;
 import com.example.imgedit.constant.Key;
 import com.example.imgedit.editLibrary.IMGEditActivity;
 import com.example.imgedit.utils.SystemUtils;
+import com.example.imgedit.utils.UriUtils;
 
 import java.io.File;
 
@@ -41,10 +44,12 @@ public class EasyCameraActivity extends AppCompatActivity {
     private static String storagePath = "";
     private static final File parentPath = Environment.getExternalStorageDirectory();
     public static Bitmap bitmapImg;
+    private String number;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        number = getIntent().getStringExtra(Config.CONGIG_SHOW_NUMBER);
         try {
             applicationName = getString(R.string.app_name);
             PackageManager packageManager = getApplicationContext().getPackageManager();
@@ -141,7 +146,7 @@ public class EasyCameraActivity extends AppCompatActivity {
             public void captureSuccess(Bitmap bitmap) {
                 bitmapImg = bitmap;
                Intent intent = new Intent(EasyCameraActivity.this, IMGEditActivity.class);
-                //intent.putExtra(IMGEditActivity.EXTRA_IMAGE_URI, uri);
+                intent.putExtra(Config.CONGIG_SHOW_NUMBER, number);
                 startActivityForResult(intent,Code.REQUEST_EDIT);
 
             }
@@ -264,7 +269,7 @@ public class EasyCameraActivity extends AppCompatActivity {
             finish();
         } if (resultCode == RESULT_OK && Code.REQUEST_EDIT == requestCode ) {
             Intent intent = new Intent();
-            intent.putExtra(Key.IMAGE_PATH, data.getStringExtra(Key.IMAGE_PATH));
+            intent.putExtra(Config.CONGIG_SAVE_PATH, data.getStringExtra(Key.IMAGE_PATH));
             setResult(RESULT_OK, intent);
             finish();
         }

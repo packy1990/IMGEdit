@@ -2,16 +2,31 @@ package com.example.imgedit.editLibrary;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.net.Uri;
+import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.TextUtils;
+import android.util.Log;
 
+import com.example.imgedit.config.Config;
 import com.example.imgedit.constant.Key;
 import com.example.imgedit.editLibrary.core.IMGMode;
 import com.example.imgedit.editLibrary.core.IMGText;
+import com.example.imgedit.editLibrary.core.file.IMGAssetFileDecoder;
+import com.example.imgedit.editLibrary.core.file.IMGDecoder;
+import com.example.imgedit.editLibrary.core.file.IMGFileDecoder;
+import com.example.imgedit.editLibrary.core.util.IMGUtils;
 import com.example.imgedit.editLibrary.utils.FileUtil;
 import com.example.imgedit.editLibrary.utils.SystemUtils;
+import com.example.imgedit.utils.UriUtils;
 import com.example.imgedit.widget.EasyCameraActivity;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 /**
  * Created by felix on 2017/11/14 下午2:26.
@@ -32,6 +47,10 @@ public class IMGEditActivity extends IMGEditBaseActivity {
 
     @Override
     public void onCreated() {
+        String number = getIntent().getStringExtra(Config.CONGIG_SHOW_NUMBER);
+        if (!TextUtils.isEmpty(number)) {
+            mImgView.addStickerText(new IMGText(number, Color.RED), true);
+        }
 
     }
 
@@ -42,7 +61,7 @@ public class IMGEditActivity extends IMGEditBaseActivity {
 
     @Override
     public void onText(IMGText text) {
-        mImgView.addStickerText(text);
+        mImgView.addStickerText(text, false);
     }
 
     @Override
@@ -73,7 +92,7 @@ public class IMGEditActivity extends IMGEditBaseActivity {
 
     @Override
     public void onCancelClick() {
-       // deletePic();//删除图片
+        // deletePic();//删除图片
         finish();
     }
 
@@ -92,6 +111,7 @@ public class IMGEditActivity extends IMGEditBaseActivity {
         return;
 
     }
+
     private void deletePic() {
         File file = new File(url);
         //删除系统缩略图

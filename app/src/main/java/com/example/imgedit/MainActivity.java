@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.example.imgedit.config.Config;
 import com.example.imgedit.constant.Code;
 import com.example.imgedit.constant.Key;
 import com.example.imgedit.permission.PermissionListener;
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void launchCamera(int requestCode) {
         Intent intent = new Intent(this, EasyCameraActivity.class);
+        intent.putExtra(Config.CONGIG_SHOW_NUMBER,"编号123456");
         startActivityForResult(intent, requestCode);
     }
 
@@ -74,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
             case RESULT_OK:
                 if (data == null) return;
                 if (Code.REQUEST_CAMERA == requestCode) {
-                    String imagePath = data.getStringExtra(Key.IMAGE_PATH);
+                    String imagePath = data.getStringExtra(Config.CONGIG_SAVE_PATH);
                     Glide.with(this).load(imagePath).into(iv_image);
                 }
             default:
