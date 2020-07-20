@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.imgedit.cameralibrary.util.LogUtil;
 import com.example.imgedit.config.Config;
 import com.example.imgedit.constant.Key;
 import com.example.imgedit.editLibrary.core.IMGMode;
@@ -105,6 +106,7 @@ public class IMGEditActivity extends IMGEditBaseActivity {
         } else {
             path = FileUtil.saveBitmapAndroidQ(this, "photo_edit", mImgView.saveBitmap());
         }
+        LogUtil.i("家电家具","哈哈哈= "+path);
         Intent intent = new Intent();
         intent.putExtra(Key.IMAGE_PATH, path);
         setResult(RESULT_OK, intent);

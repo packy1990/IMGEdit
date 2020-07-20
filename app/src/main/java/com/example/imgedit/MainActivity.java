@@ -59,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
         TakePhotoUtil.TakeThoto(this,"编码15556",new TakePhotoSuccessListener(){
             @Override
             public void onSuccess(String imagePath) {
-
                     Glide.with(MainActivity.this).load(imagePath).into(iv_image);
 
             }

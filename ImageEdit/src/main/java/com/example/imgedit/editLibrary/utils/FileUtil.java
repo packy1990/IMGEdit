@@ -3,10 +3,12 @@ package com.example.imgedit.editLibrary.utils;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -25,7 +27,8 @@ import java.io.OutputStream;
  * =====================================
  */
 public class FileUtil {
-    private static final File parentPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
+    //private static final File parentPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
+    private static final File parentPath =Environment.getExternalStorageDirectory();
     private static String storagePath = "";
     private static String DST_FOLDER_NAME = "JCamera";
 
@@ -33,6 +36,7 @@ public class FileUtil {
     private static String initPath() {
         if (storagePath.equals("")) {
             storagePath = parentPath.getAbsolutePath() + File.separator + DST_FOLDER_NAME;
+            Log.i("解决","哈哈哈==== "+storagePath);
             File f = new File(storagePath);
             if (!f.exists()) {
                 f.mkdir();
@@ -90,12 +94,29 @@ public class FileUtil {
                 os.flush();
                 os.close();
             }
+            getRealPathFromUri(context,insertUri);
             return insertUri.toString();
+           // return getRealPathFromUri(context,insertUri);
         } catch (IOException e) {
             e.printStackTrace();
             return "";
         }
     }
+    public static String getRealPathFromUri(Context context, Uri contentUri) {
+        Cursor cursor = null;
+        try {
+            String[] proj = { MediaStore.Images.Media.DATA };
+            cursor = context.getContentResolver().query(contentUri, proj, null, null, null);
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+    }
+
 
     public static String copy2DCIMAndroidQ(Context context, String path, String saveDirName) {
         String[] splits = path.split("/");

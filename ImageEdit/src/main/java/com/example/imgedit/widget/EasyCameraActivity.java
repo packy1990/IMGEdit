@@ -268,6 +268,9 @@ public class EasyCameraActivity extends AppCompatActivity {
             setResult(RESULT_OK, intent);
             finish();
         } if (resultCode == RESULT_OK && Code.REQUEST_EDIT == requestCode ) {
+            initPath();
+
+
             Intent intent = new Intent();
             intent.putExtra(Config.CONGIG_SAVE_PATH, data.getStringExtra(Key.IMAGE_PATH));
             setResult(RESULT_OK, intent);
