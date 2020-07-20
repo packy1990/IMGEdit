@@ -94,9 +94,9 @@ public class FileUtil {
                 os.flush();
                 os.close();
             }
-            getRealPathFromUri(context,insertUri);
-            return insertUri.toString();
-           // return getRealPathFromUri(context,insertUri);
+//            getRealPathFromUri(context,insertUri);
+//            return insertUri.toString();
+            return getRealPathFromUri(context,insertUri);
         } catch (IOException e) {
             e.printStackTrace();
             return "";
