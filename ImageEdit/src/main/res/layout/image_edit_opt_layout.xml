@@ -179,9 +179,9 @@
             android:src="@drawable/image_btn_text"
             android:textColor="#FFF" />
 
-        <Space
-            android:layout_width="@dimen/image_mode_space"
-            android:layout_height="wrap_content" />
+<!--        <Space-->
+<!--            android:layout_width="@dimen/image_mode_space"-->
+<!--            android:layout_height="wrap_content" />-->
 
         <RadioButton
             android:visibility="gone"
@@ -193,11 +193,12 @@
             android:onClick="onClick"
             android:textColor="#FFF" />
 
-        <Space
-            android:layout_width="@dimen/image_mode_space"
-            android:layout_height="wrap_content" />
+<!--        <Space-->
+<!--            android:layout_width="@dimen/image_mode_space"-->
+<!--            android:layout_height="wrap_content" />-->
 
         <ImageButton
+            android:visibility="gone"
             android:id="@+id/btn_clip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

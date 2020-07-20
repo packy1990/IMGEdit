@@ -73,7 +73,12 @@ abstract class IMGEditBaseActivity extends Activity implements View.OnClickListe
         mColorGroup.setOnCheckedChangeListener(this);
 
         mLayoutOpSub = findViewById(R.id.layout_op_sub);
+        //hideView();
     }
+
+//    private void hideView() {
+//        findViewById(R.id.btn_clip).setVisibility(View.GONE);
+//    }
 
     @Override
     public void onClick(View v) {

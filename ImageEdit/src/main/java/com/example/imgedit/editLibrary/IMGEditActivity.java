@@ -9,6 +9,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.imgedit.config.Config;
 import com.example.imgedit.constant.Key;
